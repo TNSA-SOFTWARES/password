@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>TNSA PASSWORD GENERATOR</title>
+    <link rel="stylesheet" href="layout.css" />
+    <script src="script.js" defer></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" type="image/x-icon" href="tnsa.png">
+  </head>
+  <body>
+    <header class="text-gray-600 body-font">
+      <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+        <a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
+          <img  class="w-20 h-35 text-white p-2"  src="tnsa.png">
+                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+            </img>
+          <span class="ml-3 text-xl">TNSA</span>
+        </a>
+        <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
+          <a class="mr-5 hover:text-gray-900" href="https://tnsa-softwares.github.io/">Home</a>
+          <a class="mr-5 hover:text-gray-900" href="https://tnsa-softwares.github.io/axha/">Axha</a>
+          <a class="mr-5 hover:text-gray-900" href="https://tnsa-softwares.github.io/dev-blogs/">Dev Blogs</a>
+          <a class="mr-5 hover:text-gray-900" href="https://tnsa-softwares.github.io/password/">Password Generator</a>
+          <a class="mr-5 hover:text-gray-900" href="https://tnsa-softwares.github.io/community/">Community</a>
+          <a class="mr-5 hover:text-gray-900" href="https://tnsa-softwares.github.io/about">About</a>
+          
+       
+  
+      </nav>
+      </div>
+  </header>
+  
+  
+    <form id="passwordGeneratorForm">
+      <div class="container">
+        <h2> TNSA Password Generator</h2>
+        <div class="result__container">
+        <span id="result"></span>
+        <button id="copy">Copy</button>
+      </div>
+      <div class="options">
+        <div class="option">
+          <label>Length</label>
+          <input type="number" id="length" min="4" max="20" value="10">
+        </div>
+        <div class="option">
+          <label>Include Uppercase</label>
+          <input type="checkbox" id="uppercase" checked>
+        </div>
+        <div class="option">
+          <label>Include Numbers</label>
+          <input type="checkbox" id="numbers" checked>
+        </div>
+        <div class="option">
+          <label>Include Symbols</label>
+          <input type="checkbox" id="symbols" checked>
+        </div>
+      </div>
+      <button class="btn" id="generate" type="submit">Generate Password</button>
+      </div>
+    </form>
+    <footer class="text-gray-600 body-font">
+      <div class="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
+        <a class="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
+          <img  class="w-20 h-35 text-white p-2 "  src="tnsa.png">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+          </svg>
+          <span class="ml-3 text-xl">TNSA</span>
+        </a>
+        <p class="text-sm text-gray-500 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4">© 2023 TNSA  
+        
+        </span>
+      </div>
+    </footer>
+  </body>
+</html>
+<style>
+    * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+ 
+body {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  font-family: 'Oswald', sans-serif;
+  background-image:linear-gradient( #0004ff,#ff00b3);
+}
+ 
+.container {
+  padding: 1rem 1.5rem;
+  border: 1px solid black;
+  width: 350px;
+  border-radius: 30px;
+  background-image:linear-gradient(#00b94a,#0040ff);
+}
+ 
+h2 {
+  text-align: center;
+  padding: 15px 0;
+}
+ 
+ 
+.option {
+  display: flex;
+  justify-content: space-between;
+  padding: 4px;
+}
+.result__container {
+  height: 50px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid black;
+  padding: 0 5px;
+  border-radius:30px;
+}
+ 
+.result-container #result {
+  word-wrap: break-word;
+  max-width: calc(100% - 40px);
+}
+ 
+.result__container #copy {
+  height: 40px;
+  width: 40px;
+  background-color: #000000;
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  border-radius: 30px;
+}
+ 
+.result__container #copy:hover {
+  background-color: #1c2541;
+  color: #ffffff;
+}
+ 
+#generate {
+  height: 40px;
+  width: 100%;
+  border-radius: 30px;
+  border: none;
+  background-color: #0b132b;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  outline: none;
+}
+ 
+#generate:hover {
+  background-color: #001c1b;
+  color: #ffffff;
+}
+</style>
+<script>
+    const resultDOM = document.getElementById("result");
+const copybtnDOM = document.getElementById("copy");
+const lengthDOM = document.getElementById("length");
+const uppercaseDOM = document.getElementById("uppercase");
+const numbersDOM = document.getElementById("numbers");
+const symbolsDOM = document.getElementById("symbols");
+const generatebtn = document.getElementById("generate");
+const form = document.getElementById("passwordGeneratorForm");
+
+
+// Generating Character Codes For The Application
+const UPPERCASE_CODES = arrayFromLowToHigh(65, 90);
+const LOWERCASE_CODES = arrayFromLowToHigh(97, 122);
+const NUMBER_CODES = arrayFromLowToHigh(48, 57);
+const SYMBOL_CODES = arrayFromLowToHigh(33, 47)
+  .concat(arrayFromLowToHigh(58, 64))
+  .concat(arrayFromLowToHigh(91, 96))
+  .concat(arrayFromLowToHigh(123, 126));
+
+  // Character Code Generating Function
+function arrayFromLowToHigh(low, high) {
+  const array = [];
+  for (let i = low; i <= high; i++) {
+    array.push(i);
+  }
+  return array;
+}
+
+
+let generatePassword = (
+  characterAmount,
+  includeUppercase,
+  includeNumbers,
+  includeSymbols
+) => {
+  let charCodes = LOWERCASE_CODES;
+  if (includeUppercase) charCodes = charCodes.concat(UPPERCASE_CODES);
+  if (includeSymbols) charCodes = charCodes.concat(SYMBOL_CODES);
+  if (includeNumbers) charCodes = charCodes.concat(NUMBER_CODES);
+  const passwordCharacters = [];
+  for (let i = 0; i < characterAmount; i++) {
+    const characterCode =
+      charCodes[Math.floor(Math.random() * charCodes.length)];
+    passwordCharacters.push(String.fromCharCode(characterCode));
+  }
+  return passwordCharacters.join("");
+};
+
+// Copy password button
+ 
+copybtnDOM.addEventListener("click", () => {
+  const textarea = document.createElement("textarea");
+  const passwordToCopy = resultDOM.innerText;
+  // A Case when Password is Empty
+  if (!passwordToCopy) return;
+  // Copy Functionality
+  textarea.value = passwordToCopy;
+  document.body.appendChild(textarea);
+  textarea.select();
+  document.execCommand("copy");
+  textarea.remove();
+  alert("Password Copied to Clipboard");
+});
+
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const characterAmount = lengthDOM.value;
+  const includeUppercase = uppercaseDOM.checked;
+  const includeNumbers = numbersDOM.checked;
+  const includeSymbols = symbolsDOM.checked;
+  const password = generatePassword(
+    characterAmount,
+    includeUppercase,
+    includeNumbers,
+    includeSymbols
+  );
+  resultDOM.innerText = password;
+});
+</script>
